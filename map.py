@@ -1,4 +1,4 @@
-from utils import randbool
+from utils import randbool, randcell2, randcell
 
 
 # 0 - поле
@@ -26,6 +26,16 @@ class Map:
         print('⬛' * (self.w + 2))
 
     def generate_river(self, l):
+        rc = randcell(self.w, self.h)
+        rx, ry = rc[0], rc[1]
+        self.cells[rx][ry] = 2
+        while l > 0:
+            rc2 = randcell2(rx, ry)
+            rx2, ry2 = rc2[0], rc2[1]
+            if (self.check_bounds(rx2, ry2)):
+                self.cells[rx2][ry2] = 2
+                rx, ry = rx2, ry2
+                l-=1
 
 
     def generate_forest(self, r, mxr):
@@ -45,6 +55,4 @@ class Map:
         self.cells = [[0 for i in range(w)] for j in range(h)]
 
 
-tmp = Map(10, 10)
-tmp.generate_forest(0, 100)
-tmp.print_map()
+
