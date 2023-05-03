@@ -5,6 +5,8 @@
 # 4 - магазин
 
 CELL_TYPES = '🟩🌲🌊🏥🛒'
+
+
 class Map:
 
     def print_map(self):
@@ -19,13 +21,17 @@ class Map:
                     print(CELL_TYPES[cell], end='')
             print('⬛')
         print('⬛' * (self.w + 2))
+
     # def generate_rivers(self):
     #
-    # def generate_forest(self):
-    #
+    def generate_forest(self, r, mxr):
+        for ri in self.h:
+            for ci in self.w:
+                #
+                self.cells[ri][ci] = 1
 
     def check_bounds(self, x, y):
-        if (x < 0 or y < 0 or x >= self.h or y >= self.w):
+        if x < 0 or y < 0 or x >= self.h or y >= self.w:
             return False
         return True
 
@@ -36,10 +42,4 @@ class Map:
 
 
 tmp = Map(10, 10)
-tmp.cells[1][1] = 1
-tmp.cells[2][2] = 2
-tmp.cells[3][3] = 3
-tmp.cells[4][4] = 4
-if tmp.check_bounds(20, 30):
-    print('yes')
 tmp.print_map()
