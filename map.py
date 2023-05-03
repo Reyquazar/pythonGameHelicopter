@@ -1,3 +1,6 @@
+from utils import randbool
+
+
 # 0 - поле
 # 1 - дерево
 # 2 - река
@@ -22,13 +25,14 @@ class Map:
             print('⬛')
         print('⬛' * (self.w + 2))
 
-    # def generate_rivers(self):
-    #
+    def generate_river(self, l):
+
+
     def generate_forest(self, r, mxr):
-        for ri in self.h:
-            for ci in self.w:
-                #
-                self.cells[ri][ci] = 1
+        for ri in range(self.h):
+            for ci in range(self.w):
+                if randbool(r, mxr):
+                    self.cells[ri][ci] = 1
 
     def check_bounds(self, x, y):
         if x < 0 or y < 0 or x >= self.h or y >= self.w:
@@ -42,4 +46,5 @@ class Map:
 
 
 tmp = Map(10, 10)
+tmp.generate_forest(0, 100)
 tmp.print_map()
