@@ -4,23 +4,19 @@
 # 3 - госпиталь
 # 4 - магазин
 
+CELL_TYPES = '🟩🌲🌊🏥🛒'
 class Map:
 
     def print_map(self):
+        """
+        генератор карты
+        """
         print('⬛' * (self.w + 2))
         for row in self.cells:
             print('⬛', end='')
             for cell in row:
-                if cell == 0:
-                    print('🟩', end='')
-                elif cell == 1:
-                    print('🌲', end='')
-                elif cell == 2:
-                    print('🌊', end='')
-                elif cell == 3:
-                    print('🏥', end='')
-                elif cell == 4:
-                    print('🛒', end='')
+                if 0 <= cell < len(CELL_TYPES):
+                    print(CELL_TYPES[cell], end='')
             print('⬛')
         print('⬛' * (self.w + 2))
     # def generate_rivers(self):
@@ -32,6 +28,7 @@ class Map:
         if (x < 0 or y < 0 or x >= self.h or y >= self.w):
             return False
         return True
+
     def __init__(self, w, h):
         self.w = w
         self.h = h
