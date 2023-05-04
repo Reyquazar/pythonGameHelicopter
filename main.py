@@ -3,6 +3,7 @@
 from map import Map
 import time
 import os
+from helicopter import Helicopter as Helico
 
 TICK_SLEEP = 0.05
 TREE_UPDATE = 50
@@ -14,14 +15,15 @@ field.generate_forest(3, 10)
 field.generate_river(10)
 field.generate_river(10)
 
-field.print_map()
+
+helico = Helico(MAP_W, MAP_H)
 
 tick = 1
 
 while True:
     os.system('cls')
     print('TICK', tick)
-    field.print_map()
+    field.print_map(helico)
     tick += 1
     time.sleep(TICK_SLEEP)
     if tick % TREE_UPDATE == 0:
